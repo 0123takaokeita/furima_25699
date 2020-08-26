@@ -120,7 +120,63 @@
   </div>
   <%# //FURIMAの特徴 %>
 
-  
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>ピックアップカテゴリー</h2>
+    <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
+    <ul class='item-lists'>
+      <% if @items[0] != nil%>
+      <% @items.each do |item|%>
+      <li class='list'>
+        <%= link_to item_path(item.id) do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" %>
+          <%# sold outの表示 %>
+          <% if item.item_transaction != nil %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star-icon.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+      <% end %>
+      <%# 商品がない場合のダミー %>
+      <% if @items.length == 0%>
+      <li class='list'>
+        <%= link_to '#' do %>
+        <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            商品を出品してね！
+          </h3>
+          <div class='item-price'>
+            <span>99999999円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star-icon.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+      <%# //商品がない場合のダミー %>
+    </ul>
+  </div>
   <%# //商品一覧 %>
 </div>
 <a href="/items/new">

@@ -1,6 +1,12 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]   #deviseのメソッドのためコントローラーに記述しなくて良い。
+
   def new
     @item = Item.new
+  end
+
+  def index
+    @items = Item.all.order(created_at: :desc)
   end
 
   def create

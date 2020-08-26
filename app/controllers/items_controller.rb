@@ -36,6 +36,11 @@ class ItemsController < ApplicationController
        render 'edit'
     end
 
+    def destroy
+      @item.destroy if current_user.id == @item.user.id
+      redirect_to root_path
+    end
+    
 private
   def item_params
     params.require(:item).permit(

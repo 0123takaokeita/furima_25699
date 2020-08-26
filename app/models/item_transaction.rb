@@ -1,0 +1,2 @@
+class ItemTransaction < ApplicationRecord
+end

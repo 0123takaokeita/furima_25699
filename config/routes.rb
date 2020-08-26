@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'transactions/index'
   root to: "items#index"
   get 'items/new'
   devise_for :users

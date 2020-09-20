@@ -8,9 +8,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const profitDom = document.getElementById("profit");
 
     priceInput.addEventListener("input", () => {
-      const inputValue = document.getElementById("item-price").value;
-        addTaxDom.innerHTML = Math.floor(inputValue * 0.1).toLocaleString();
-        profitDom.innerHTML = Math.floor(inputValue * 0.9).toLocaleString();
+      const inputValue = priceInput.value;
+
+      const tax = Math.floor(inputValue * 0.1)
+      const fee = inputValue - tax
+
+        addTaxDom.innerHTML = tax
+        profitDom.innerHTML = fee
     })
   }
 });

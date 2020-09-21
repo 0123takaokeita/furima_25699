@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+
   before_action :select_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:index]
 

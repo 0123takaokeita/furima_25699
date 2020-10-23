@@ -1,0 +1,44 @@
+
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      item: アイテム
+      address: 住所
+    attributes:
+      user:
+        nickname: ニックネーム
+        birth_date: 生年月日
+        first_name: 姓
+        last_name: 名
+        first_name_kana: 姓（カナ）
+        last_name_kana: 名（カナ）
+      item:
+        image: 出品画像
+        images: 出品画像
+        name: 商品名
+        info: 商品説明
+        category_id: カテゴリー
+        sales_status_id: 商品の状態
+        shipping_fee_status_id: 配送料の負担
+        prefecture_id: 発送元の地域
+        scheduled_delivery_id: 発送までの日数
+        price: 価格
+  activemodel:
+    models:
+      pay_form: 購入情報
+    attributes:
+      pay_form:
+        item_id: 商品番号
+        token: カード情報
+        postal_code: 郵便番号
+        prefecture: 配送先都道府県
+        city: 配送先市町村
+        addresses: 配送先番地
+        building: 配送先建物名
+        phone_number: 連絡先電話番号
+        user_id: 購入者番号
+  # 全てのmodelで共通して使用するattributesを定義
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日

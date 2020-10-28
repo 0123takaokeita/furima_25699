@@ -1,4 +1,4 @@
-rumb :root do
+crumb :root do
   link "トップページ", root_path
 end
 
@@ -7,8 +7,13 @@ crumb :new_item do
   parent :root
 end
 
-# 以下追加
 crumb :show_item do |item|
   link "商品名: #{item.name}" , item_path(item)
   parent :root
+end
+
+
+crumb :edit_item do |item|
+  link "商品編集画面"
+  parent :show_item, item
 end

@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :items do
     resources :transactions, only: [:index, :create]
+    resources :comments, only: :create     # 追記
   end
 end

@@ -65,7 +65,8 @@ gem "active_hash"
 
 gem "payjp"
 gem 'pry-rails'
-gem "rails-i18n"
+gem "rails-i18n" #エラー文日本語化
+gem "gretel" #パンくず
 gem "aws-sdk-s3", require: false
 
 group :production do

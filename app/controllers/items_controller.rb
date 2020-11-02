@@ -22,6 +22,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit
@@ -30,10 +32,10 @@ class ItemsController < ApplicationController
     end
     
     def update
-       @item = Item.find(params[:id])
-       @item.update(item_params) if current_user.id == @item.user.id
-       return redirect_to item_path if @item.valid?
-       render 'edit'
+      @item = Item.find(params[:id])
+      @item.update(item_params) if current_user.id == @item.user.id
+      return redirect_to item_path if @item.valid?
+      render 'edit'
     end
 
     def destroy

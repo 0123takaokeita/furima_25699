@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   def create
+    # 追加
+    @item = Item.find(params[:item_id]) 
     @comment = Comment.new(comments_params)
     if @comment.save
-                                    # 部屋の名前
-      ActionCable.server.broadcast "comments_channel", {comment: @comment, user: @comment.user}
+      # 変更
+      CommentsChannel.broadcast_to @item, { comment: @comment, user: @comment.user }  
     end
   end
 

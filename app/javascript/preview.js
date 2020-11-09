@@ -15,6 +15,10 @@ window.addEventListener("DOMContentLoaded", () => {
     console.table(e.target.files);
     console.log('1つ目のfile:', e.target.files[0]);
 
+      // data-index（何番目を操作しているか）を取得
+      const dataIndex = e.target.getAttribute('data-index');
+      console.log('data-index:', dataIndex);
+
     // 既にプレビューが表示されているときは古い方を削除する
     const previewArea = document.querySelector('.preview');
     if (previewArea){

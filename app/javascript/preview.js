@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
   console.log('preview.js');
 
   // 画像のfile_field
-  const fileField = document.querySelector('input[type="file"][name="item[image]"]')
+  const fileField = document.querySelector('input[type="file"][name="item[images][]"]')
 
   // 画像のfile_fieldの内容が変化（新しく選択、もしくは消える）したら発火するイベント
   fileField.addEventListener("change", (e) => {

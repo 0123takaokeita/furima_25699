@@ -44,6 +44,15 @@ window.addEventListener("DOMContentLoaded", () => {
     // プレビュー画像一覧にプレビュー画像を挿入する
     const previewsList = document.querySelector('#previews');
     previewsList.appendChild(previewWrapper);
+
+        // 新しいfile_fieldを生成
+    const newFileField = document.createElement('input');
+    newFileField.setAttribute('type', 'file');
+    newFileField.setAttribute('name', 'item[images][]');
+
+    // file_fieldを追加
+    const fileFieldsArea = document.querySelector('.click-upload');
+    fileFieldsArea.appendChild(newFileField);
   })
 
 });

@@ -15,13 +15,11 @@ window.addEventListener("DOMContentLoaded", () => {
     console.table(e.target.files);
     console.log('1つ目のfile:', e.target.files[0]);
 
-    // ---追加ここから---
     // 既にプレビューが表示されているときは古い方を削除する
     const previewArea = document.querySelector('.preview');
     if (previewArea){
       previewArea.remove();
     }
-    // ---追加ここまで---
 
     const file = e.target.files[0];
     // 選択されたファイルはblobという形式でブラウザが所持している

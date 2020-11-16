@@ -50,6 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
       previewArea.remove();
     }
 
+    // 画像用のfile_fieldを生成・表示する
     const file = e.target.files[0];
     // 選択されたファイルはblobという形式でブラウザが所持している
     const blob = window.URL.createObjectURL(file);
@@ -76,6 +77,9 @@ window.addEventListener("DOMContentLoaded", () => {
     // プレビュー画像一覧にプレビュー画像を挿入する
     const previewsList = document.querySelector('#previews');
     previewsList.appendChild(previewWrapper);
+
+    // dataIndexとblobを使ってプレビューを表示させる
+    buildPreviewImage(dataIndex, blob);
 
         // 新しいfile_fieldを生成
     const newFileField = document.createElement('input');

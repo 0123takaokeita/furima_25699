@@ -57,6 +57,16 @@ window.addEventListener("DOMContentLoaded", () => {
     newFileField.setAttribute('type', 'file');
     newFileField.setAttribute('name', 'item[images][]');
 
+    // ---file_fieldにdata-indexを設定ここから---
+    // 最後のfile_fieldを取得
+    const lastFileField = document.querySelector('input[type="file"][name="item[images][]"]:last-child')
+    console.log('lastfilefield:',lastFileField);
+    // nextDataIndex = 最後のfile_fieldのdata-index + 1
+    const nextDataIndex = Number(lastFileField.getAttribute('data-index')) +1;
+    console.log('next-data-index:', nextDataIndex);
+    newFileField.setAttribute('data-index', nextDataIndex);
+    // ---file_fieldにdata-indexを設定ここまで---
+
     // file_fieldを追加
     const fileFieldsArea = document.querySelector('.click-upload');
     fileFieldsArea.appendChild(newFileField);

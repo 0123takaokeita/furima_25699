@@ -18,7 +18,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image, id:"item-image" %>
+　         <%= f.file_field :images, name: 'item[images][]', class: 'item_image', data: {index: 0} %> <%#複数枚投稿のため変更%>
       </div>
     </div>
     <%# /出品画像 %>

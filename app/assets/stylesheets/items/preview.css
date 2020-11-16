@@ -1,17 +1,17 @@
 /* プレビュー画像たち */
 #previews {
-  width: 100rem;
+  width: 50rem;
   height: 10rem;
   display: flex;
   overflow: hidden;
-  border: solid 3px red;
+  border: solid 6px red;
 }
 
 /* プレビュー画像1枚分の親 */
 .preview {
-  width: 100%;
+  width: 20%;
   height: 100%;
-  border: solid 3px green;
+  border: solid 6px green;
   flex-shrink: 0;
 }
 
@@ -21,4 +21,11 @@
   height: 85%;
   vertical-align: top;
   padding: 1rem 0;
+}
+
+.image-delete-button {
+  flex-grow: 1;
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
 }

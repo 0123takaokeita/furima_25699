@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (!itemForm) return null;
   console.log('preview.js');
 
+  const image_limits = 5;
 
     // プレビュー画像を生成・表示する
     const buildPreviewImage = (dataIndex, blob) =>{
@@ -119,8 +120,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // dataIndexとblobを使ってプレビューを表示させる
     buildPreviewImage(dataIndex, blob);
 
-    // 新しいfile_fieldを追加する
-    buildNewFileField();
+    // 画像の枚数制限に引っかからなければ新しいfile_fieldを追加する
+    const image_count = document.querySelectorAll(".preview").length;
+    console.log("image_count:", image_count);
+    if (image_count < image_limits) buildNewFileField();
   };
 
    // 画像のfile_field

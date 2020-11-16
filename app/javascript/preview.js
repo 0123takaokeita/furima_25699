@@ -24,6 +24,14 @@ window.addEventListener("DOMContentLoaded", () => {
       // プレビュー画像の親要素に子要素としてimg要素を追加する
       previewWrapper.appendChild(previewImage);
   
+      // 削除ボタンを生成
+      const deleteButton = document.createElement("div");
+      deleteButton.setAttribute("class", "image-delete-button");
+      deleteButton.innerText = "削除";
+
+      // プレビュー画像の親要素に子要素として削除ボタンを追加する
+      previewWrapper.appendChild(deleteButton);
+
       console.log('プレビューの親要素:', previewWrapper);
       console.log('プレビューのimg要素:', previewImage);
   

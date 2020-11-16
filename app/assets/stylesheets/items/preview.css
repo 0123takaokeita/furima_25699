@@ -22,3 +22,10 @@
   vertical-align: top;
   padding: 1rem 0;
 }
+
+.image-delete-button {
+  flex-grow: 1;
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
+}

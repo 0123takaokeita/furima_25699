@@ -9,6 +9,31 @@ window.addEventListener("DOMContentLoaded", () => {
   // 画像のfile_field
   const fileField = document.querySelector('input[type="file"][name="item[images][]"]')
 
+    // プレビュー画像を生成・表示する
+    const buildPreviewImage = (dataIndex, blob) =>{
+      // プレビュー画像の親要素を生成
+      const previewWrapper = document.createElement('div');
+      previewWrapper.setAttribute('class', 'preview');
+  
+      // プレビュー画像にdata-indexを設定
+      previewWrapper.setAttribute('data-index', dataIndex);
+  
+      // プレビュー画像のimg要素を生成
+      const previewImage = document.createElement('img');
+      previewImage.setAttribute('src', blob);
+      previewImage.setAttribute('class', 'preview-image');
+  
+      // プレビュー画像の親要素に子要素としてimg要素を追加する
+      previewWrapper.appendChild(previewImage);
+  
+      console.log('プレビューの親要素:', previewWrapper);
+      console.log('プレビューのimg要素:', previewImage);
+  
+      // プレビュー画像一覧にプレビュー画像を挿入する
+      const previewsList = document.querySelector('#previews');
+      previewsList.appendChild(previewWrapper);
+    }
+    
   // 画像のfile_fieldの内容が変化（新しく選択、もしくは消える）したら発火するイベント
   fileField.addEventListener("change", (e) => {
     console.log('changed:', e.target);

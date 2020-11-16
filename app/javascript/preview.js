@@ -73,6 +73,18 @@ window.addEventListener("DOMContentLoaded", () => {
     const blob = window.URL.createObjectURL(file);
     console.log("blob:", blob);
 
+        // data-indexを使って既にプレビューが表示されているかを確認する
+        const oldPreviewWrapper = document.querySelector(
+          `.preview[data-index="${dataIndex}"]`
+        );
+        if (oldPreviewWrapper) {
+          // 既にプレビューが表示されているので画像の差し替えのみを行い終了する
+          const oldPreviewImage = oldPreviewWrapper.querySelector("img");
+          oldPreviewImage.setAttribute("src", blob);
+          return null;
+        }
+
+        
     // dataIndexとblobを使ってプレビューを表示させる
     buildPreviewImage(dataIndex, blob);
 

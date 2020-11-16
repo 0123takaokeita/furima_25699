@@ -57,6 +57,18 @@ window.addEventListener("DOMContentLoaded", () => {
     fileFieldsArea.appendChild(newFileField);
   };
 
+    // 指定したdata-indexを持つプレビューとfile_fieldを削除する
+    const deleteImage = (dataIndex) => {
+      const previewWrapper = document.querySelector(
+        `.preview[data-index="${dataIndex}"]`
+      );
+      previewWrapper.remove();
+      const fileField = document.querySelector(
+        `input[type="file"][data-index="${dataIndex}"]`
+      );
+      fileField.remove();
+    };
+  
   // 画像のfile_fieldの内容が変化（新しく選択、もしくは消える）したら発火するイベントで行われる処理
   const changedFileField = (e) => {
     console.log("changed:", e.target);
@@ -69,6 +81,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     const file = e.target.files[0];
+
+        // fileが空 = 何も選択しなかったのでプレビュー等を削除して終了する
+        if (!file) {
+          deleteImage(dataIndex);
+          return null;
+        }
+
     // 選択されたファイルはblobという形式でブラウザが所持している
     const blob = window.URL.createObjectURL(file);
     console.log("blob:", blob);

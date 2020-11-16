@@ -29,6 +29,10 @@ window.addEventListener("DOMContentLoaded", () => {
       deleteButton.setAttribute("class", "image-delete-button");
       deleteButton.innerText = "削除";
 
+      // 削除ボタンをクリックしたらプレビューとfile_fieldを削除させる
+      deleteButton.addEventListener("click", () => deleteImage(dataIndex));
+
+
       // プレビュー画像の親要素に子要素として削除ボタンを追加する
       previewWrapper.appendChild(deleteButton);
 

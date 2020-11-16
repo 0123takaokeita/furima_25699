@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'transactions/index'
   root to: "items#index"
   get 'items/new'
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+  }
   resources :items do
     resources :transactions, only: [:index, :create]
     resources :comments, only: :create     # 追記

@@ -35,6 +35,7 @@ class Item < ApplicationRecord
 
   # <<アクティブストレージの設定関連>>
   has_many_attached :images #複数枚投稿
+  validates :images, length: { minimum: 1, maximum: 5, message: "は1枚以上5枚以下にしてください" }
 
   # <<アソシエーション>>
   belongs_to :user

@@ -34,6 +34,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const previewWrapper = document.createElement('div');
     previewWrapper.setAttribute('class', 'preview');
 
+    // プレビュー画像にdata-indexを設定
+    previewWrapper.setAttribute('data-index', dataIndex);
+
     // プレビュー画像のimg要素を生成
     const previewImage = document.createElement('img');
     previewImage.setAttribute('src', blob);

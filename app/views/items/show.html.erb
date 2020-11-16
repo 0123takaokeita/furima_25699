@@ -8,7 +8,7 @@
       <%= @item.name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
+      <%= image_tag @item,class:"item-box-img" %>
       <% if @item.item_transaction != nil %>
       <div class='sold-out'>
         <span>Sold Out!!</span>

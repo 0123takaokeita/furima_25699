@@ -10,10 +10,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
-
+  def create
+    @user = User.new(sign_up_params)
+    ## @userがバリデーションに引っかかるなら入力させなおす
+    unless @user.valid?
+      render :new and return
+    end
+    ## @userがバリデーションをパスするならsessionに入れてお
+    ## attributesメソッドは、@userの属性値をハッシュで取得するメソッド
+    session["devise.regist_data"] = {user: @user.attributes}
+    ## passwordは@user.attributesに含まれないのでparamsから別途取得する
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    ## newaddress_presetのビューで使用する@addressを定義（@userに紐づけておく）
+    @address_preset = @user.build_address_preset
+    ## newaddress_presetのビューを表示させる
+    render :new_address_preset
+  end
+  
   # GET /resource/edit
   # def edit
   #   super

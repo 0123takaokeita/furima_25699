@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // file_fieldにchangeイベントをセット
     newFileField.addEventListener("change", changedFileField);
-    
+
     // file_fieldを追加
     const fileFieldsArea = document.querySelector('.click-upload');
     fileFieldsArea.appendChild(newFileField);
@@ -67,10 +67,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const dataIndex = e.target.getAttribute("data-index");
     console.log("data-index:", dataIndex);
 
-    const previewArea = document.querySelector(".preview");
-    if (previewArea) {
-      previewArea.remove();
-    }
 
     const file = e.target.files[0];
     // 選択されたファイルはblobという形式でブラウザが所持している

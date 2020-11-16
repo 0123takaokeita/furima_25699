@@ -80,6 +80,11 @@ window.addEventListener("DOMContentLoaded", () => {
         `input[type="file"][data-index="${dataIndex}"]`
       );
       fileField.remove();
+
+    // 画像の枚数が最大のときに削除ボタンを押したらfile_fieldを1つ追加しておく
+    const image_count = document.querySelectorAll(".preview").length;
+    console.log("image_count:", image_count);
+    if (image_count == image_limits - 1) buildNewFileField();
     };
   
   // 画像のfile_fieldの内容が変化（新しく選択、もしくは消える）したら発火するイベントで行われる処理

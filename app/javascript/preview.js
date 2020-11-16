@@ -49,6 +49,9 @@ window.addEventListener("DOMContentLoaded", () => {
     newFileField.setAttribute('data-index', nextDataIndex);
     // ---file_fieldにdata-indexを設定ここまで---
 
+    // file_fieldにchangeイベントをセット
+    newFileField.addEventListener("change", changedFileField);
+    
     // file_fieldを追加
     const fileFieldsArea = document.querySelector('.click-upload');
     fileFieldsArea.appendChild(newFileField);

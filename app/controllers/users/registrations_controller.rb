@@ -1,6 +1,7 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
+
+# frozen_string_literal: true
+before_action :session_has_not_user_data, only: [:new_address_preset, :create_address_preset]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -50,6 +51,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:address_preset).permit(:postal_code, :prefecture, :city, :addresses, :building, :phone_number)
   end
 
+  ## URL直打ちではusers/registrations#new_address_preset等にアクセスできないようにする
+  def session_has_not_user_data
+    redirect_to root_path, alert: "ユーザー情報がありません" unless session["devise.regist_data"]
+  end
+  
   # GET /resource/edit
   # def edit
   #   super

@@ -2,7 +2,7 @@
 class PayForm
   include ActiveModel::Model
   attr_accessor 
-  :item_id, 
+  (:item_id, 
   :token, 
   :postal_code, 
   :prefecture, 
@@ -10,7 +10,7 @@ class PayForm
   :addresses, 
   :building, 
   :phone_number, 
-  :user_id
+  :user_id)
 
   # <<バリデーション>>
   with_options presence: true do

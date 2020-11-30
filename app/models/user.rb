@@ -27,4 +27,23 @@ class User < ApplicationRecord
   has_many :item_transaction
 
   has_one :address_preset, dependent: :destroy
+
+
+  # 最終的にuserのインスタンスを返すクラスメソッド
+  # SNSと同emailのユーザが存在すればそのユーザを返す。いなければuserを作成し返す。
+  def self.from_omniauth(auth)
+    # auth.info['email']にSNSサービスの登録emailが入っているのでそれを使用して検索
+    user = User.where(email: auth.info['email']).first
+
+    unless user
+      password = Devise.friendly_token[8,12] + "1a"
+      user = User.new(
+        nickname: auth.info['name'],
+        email: auth.info['email'],
+        password: password,
+        password_confirmation: password
+      )
+    end
+    user
+  end
 end

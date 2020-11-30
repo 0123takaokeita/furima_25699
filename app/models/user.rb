@@ -24,9 +24,11 @@ class User < ApplicationRecord
 
   # <<アソシエーション>>
   has_many :items
-  has_many :item_transaction
-
+  has_many :item_transactions
+  has_one :card, dependent: :destroy
   has_one :address_preset, dependent: :destroy
+  # 追加
+  has_many :sns_credential
 
 
   # 最終的にuserのインスタンスを返すクラスメソッド

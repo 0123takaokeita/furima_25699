@@ -16,11 +16,17 @@
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
-      <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+        <li><%= link_to current_user.nickname, cards_path, class: "user-nickname" %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
       <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-      <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
+
+        <%# 追加 %>
+        <li><%= link_to 'Facebook', user_facebook_omniauth_authorize_path , class: "login", method: :post %></li>
+        <li><%= link_to 'Google', user_google_oauth2_omniauth_authorize_path, class: "login", method: :post %></li>
+        <%# 追加ここまで %>
+
+        <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+        <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
       <% end %>
     </ul>
   </div>

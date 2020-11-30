@@ -33,18 +33,17 @@ class User < ApplicationRecord
 
   # 最終的にuserのインスタンスを返すクラスメソッド
   # SNSと同emailのユーザが存在すればそのユーザを返す。いなければuserを作成し返す。
-  def self.from_omniauth(auth)
-    # auth.info['email']にSNSサービスの登録emailが入っているのでそれを使用して検索
-    user = User.where(email: auth.info['email']).first
-
-    unless user
-      password = Devise.friendly_token[8,12] + "1a"
-      user = User.new(
-        nickname: auth.info['name'],
-        email: auth.info['email'],
-        password: password,
-        password_confirmation: password
-      )
+  def self.from_sns_credential(sns, auth)
+    # snsの情報が既にDBにあった場合は、2回目以降のログインなので紐づくuserを返す
+    return sns.user if sns.persisted?
+    # snsの情報がDBにない場合
+    # 既存ユーザへSNSサービス連携or新規ユーザ登録
+    user = User.where(email: auth.info.email).first_or_initialize
+    if user.persisted?
+      user.sns_credentials << sns
+      user.save
+    else
+      user.nickname = auth.info.name
     end
     user
   end

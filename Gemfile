@@ -74,3 +74,7 @@ group :production do
   # gem 'rails_12factor'
   gem 'unicorn', '5.4.1'
 end
+
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"

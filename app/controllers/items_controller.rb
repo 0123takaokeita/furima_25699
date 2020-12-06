@@ -1,8 +1,11 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]   #deviseのメソッドのためコントローラーに記述しなくて良い。
-  before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase_confirm]
+  before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm, :purchase]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase_confirm, :purchase]
+  before_action :sold_item, only: [:purchase_confirm, :purchase]
+  before_action :current_user_has_not_card, only: [:purchase_confirm, :purchase]
 
+  
   def new
     @item = Item.new
   end
@@ -49,8 +52,53 @@ class ItemsController < ApplicationController
     def purchase_confirm
       @address = Address.new
     end
-    
+
+    def purchase
+      ## 購入履歴オブジェクトを定義
+      item_transaction = ItemTransaction.new(item_id: @item.id, user_id: current_user.id)
+  
+      ## 購入履歴オブジェクトに紐づく配送先オブジェクトを定義
+      @address = item_transaction.build_address(address_params)
+      if @address.valid?
+        ## 配送先を保存できるとき
+        Payjp.api_key = ENV['PAYJP_SK']      
+        Payjp::Charge.create(
+          amount: @item.price,
+          customer: current_user.card.customer_token,  ## 顧客のトークンを渡す
+          currency: 'jpy'
+        )
+  
+        @address.save
+        redirect_to root_path
+      else
+        ## 配送先を保存できないとき
+        redirect_to purchase_confirm_item_path(@item)
+      end
+    end
+
 private
+
+  ## ユーザーがカードを登録していないならカードの登録ページにリダイレクト
+  def current_user_has_not_card
+    redirect_to new_card_path, alert: "クレジットカードが登録されていません" unless current_user.card.present?
+  end
+
+  ## 購入履歴がある（売り切れ）なら商品の詳細ページにリダイレクト
+  def sold_item
+    redirect_to item_path(@item), alert: "売り切れの商品です" if @item.item_transaction.present?
+  end
+
+  def address_params
+    params.permit(
+      :postal_code,
+      :prefecture,
+      :city,
+      :addresses,
+      :building,
+      :phone_number
+    )
+  end
+
   def item_params
     params.require(:item).permit(
       :name,

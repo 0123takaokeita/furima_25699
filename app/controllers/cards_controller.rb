@@ -1,4 +1,10 @@
 class CardsController < ApplicationController
+
+
+  before_action :authenticate_user!, only: [:index, :new, :create, :destroy]
+  before_action :current_user_has_card, only: [:new, :create]
+
+  
   def index
     ## カードが登録されていないならここで終了
     return unless current_user.card.present?
@@ -41,4 +47,11 @@ class CardsController < ApplicationController
       redirect_to cards_path, alert: "クレジットカードの削除に失敗しました"
     end
   end
+
+  private
+
+  def current_user_has_card
+    redirect_to cards_path, alert: "既にクレジットカードを登録済みです" if current_user.card
+  end
+
 end

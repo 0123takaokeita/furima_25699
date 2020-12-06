@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]   #deviseのメソッドのためコントローラーに記述しなくて良い。
+  before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase_confirm]
 
   def new
     @item = Item.new
@@ -42,6 +44,10 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
       @item.destroy if current_user.id == @item.user.id
       redirect_to root_path
+    end
+    
+    def purchase_confirm
+      @address = Address.new
     end
     
 private

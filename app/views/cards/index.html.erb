@@ -1,3 +1,4 @@
+
 <%= render "shared/header" %>
 
 <div id="card-wrapper">
@@ -6,10 +7,32 @@
   </div>
   <% if current_user.card.present? %>
 
+  <div class="card-detail__page-title">
+    <h2>カード情報<h2>
+  </div>
+
+  <div class="card-detail__card-info">
+    【カード番号】
+    <br>
+    <%= "**** **** **** " + @card[:last4] %>
+    <%# カード番号の下4桁を取得 %>
+    <br>
+    【有効期限】
+    <br>
+    <%= @card[:exp_month] %>
+    <%# 有効期限の「月」を取得 %>
+    /
+    <%= @card[:exp_year] %>
+    <%# 有効期限の「年」を取得 %>
+  </div>
+
+  <%= link_to "クレジットカードを削除する", card_path(current_user.card), method: :delete, id: "destroy-card-link"%>
+
   <% else %>
   カードがありません。
   <br>
   <%= link_to "クレジットカードを登録する", new_card_path, id: "new-card-link"%>
   <% end %>
 </div>
+
 <%= render "shared/footer" %>

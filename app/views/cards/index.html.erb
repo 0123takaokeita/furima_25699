@@ -1,0 +1,15 @@
+<%= render "shared/header" %>
+
+<div id="card-wrapper">
+  <div id="card-detail__user-name">
+    <%= current_user.nickname%>さんのクレジットカード
+  </div>
+  <% if current_user.card.present? %>
+
+  <% else %>
+  カードがありません。
+  <br>
+  <%= link_to "クレジットカードを登録する", new_card_path, id: "new-card-link"%>
+  <% end %>
+</div>
+<%= render "shared/footer" %>

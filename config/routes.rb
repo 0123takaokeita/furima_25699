@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     resources :transactions, only: [:index, :create]
     resources :comments, only: :create     # 追記
   end
+
+  resources :cards, only: [:index, :new, :create, :destroy]
 end

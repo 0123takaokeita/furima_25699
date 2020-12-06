@@ -1,0 +1,35 @@
+#card-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#card-detail__user-name{
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 2rem 0;
+}
+
+#new-card-link{
+  width: 25rem;
+  text-align: center;
+  border: solid 1px blue; 
+  background-color: skyblue;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+#destroy-card-link{
+  border: solid 1px red;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  display: inline-block;
+}

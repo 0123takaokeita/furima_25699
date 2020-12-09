@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]   #deviseのメソッドのためコントローラーに記述しなくて良い。
-  before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm, :purchase]
+  # before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm, :purchase]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase_confirm, :purchase]
   before_action :sold_item, only: [:purchase_confirm, :purchase]
   before_action :current_user_has_not_card, only: [:purchase_confirm, :purchase]
 
   
   def new
-    @item = Item.new
+    @item_form = ItemForm.new
   end
 
   def index
@@ -15,10 +15,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item_form = ItemForm.new(item_form_params)
     # バリデーションで問題があれば、保存はされず「商品出品画面」を再描画
-    if @item.valid?
-      @item.save
+    if @item_form.valid?
+      @item_form.save
       return redirect_to root_path
     end
     # アクションのnewをコールすると、エラーメッセージが入った@itemが上書きされてしまうので注意
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
       ## 例えば文字列"hoge fuga foo bar"は配列[hoge, fuga, foo, bar]になる
       params[:q][:name_cont_any] = squished_keywords.split(" ")
     end
-    
+
     @q = Item.ransack(params[:q])
     @items = @q.result
     
@@ -116,10 +116,13 @@ private
     )
   end
 
-  def item_params
-    params.require(:item).permit(
+
+  def item_form_params
+    ## require(:item) → require(:item_form)
+    params.require(:item_form).permit(
       :name,
       :info,
+      :tag_name, 
       :category_id,
       :sales_status_id,
       :shipping_fee_status_id,
@@ -129,4 +132,5 @@ private
       {images: []}
     ).merge(user_id: current_user.id)
   end
+
 end

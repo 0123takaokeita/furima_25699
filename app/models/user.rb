@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
 
   # パスワードの英数字混在を否定
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  # PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
 
   # 全角のひらがなor漢字を使用していないか検証
@@ -41,7 +41,7 @@ class User < ApplicationRecord
     # 既存ユーザへSNSサービス連携or新規ユーザ登録
     user = User.where(email: auth.info.email).first_or_initialize
     if user.persisted?
-      user.sns_credentials << sns
+      user.sns_credential << sns
       user.save
     else
       user.nickname = auth.info.name

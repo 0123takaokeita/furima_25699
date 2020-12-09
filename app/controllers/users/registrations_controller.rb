@@ -50,7 +50,7 @@ before_action :session_has_not_user_data, only: [:new_address_preset, :create_ad
     ## @userに@address_presetを紐づける
     @user.build_address_preset(@address_preset.attributes)
 # 追加
-    @user.sns_credentials.new(@sns.attributes)
+    @user.sns_credential.new(@sns.attributes)
 
     ## @userがバリデーションに引っかかるなら入力させなおす
     unless @user.valid?

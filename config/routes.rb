@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   resources :items do
     resources :transactions, only: [:index, :create]
     resources :comments, only: :create     # 追記
-  end
-  member do
-    get :purchase_confirm
-    post :purchase
+    member do
+      get :purchase_confirm
+      post :purchase
+    end
   end
 
   resources :cards, only: [:index, :new, :create, :destroy]

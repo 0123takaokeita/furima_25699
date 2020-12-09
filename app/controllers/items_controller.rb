@@ -48,6 +48,23 @@ class ItemsController < ApplicationController
       @item.destroy if current_user.id == @item.user.id
       redirect_to root_path
     end
+
+
+  def search
+
+    if params[:q]&.dig(:name)  ## if params[:q] && params[:q][:name]と同じようなもの
+      ## squishメソッドで無駄なスペースを圧縮する
+      ## 例えば "hoge         fuga    foo  bar"は"hoge fuga foo bar"になる
+      squished_keywords = params[:q][:name].squish
+      ## 半角スペースを区切り文字として配列にしてparamsに入れる
+      ## 例えば文字列"hoge fuga foo bar"は配列[hoge, fuga, foo, bar]になる
+      params[:q][:name_cont_any] = squished_keywords.split(" ")
+    end
+    
+    @q = Item.ransack(params[:q])
+    @items = @q.result
+    
+  end
     
     def purchase_confirm
       @address = Address.new

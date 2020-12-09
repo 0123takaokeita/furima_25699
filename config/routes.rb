@@ -11,9 +11,15 @@ Rails.application.routes.draw do
     get 'users/new_address_preset', to: 'users/registrations#new_address_preset'
     post 'users/create_address_preset', to: 'users/registrations#create_address_preset'
   end
+  
   resources :items do
     resources :transactions, only: [:index, :create]
-    resources :comments, only: :create     # 追記
+    resources :comments, only: :create 
+    
+    collection do
+      get 'search'
+    end
+
     member do
       get :purchase_confirm
       post :purchase

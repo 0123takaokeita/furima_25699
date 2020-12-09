@@ -1,0 +1,25 @@
+#detailed-search-wrapper{
+  display:flex;
+  justify-content: center;
+  padding: 0 10rem;
+}
+
+#detailed-search-form{
+  background-color: white;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 5vh;
+}
+
+.search-field{
+  margin: 0.5rem 0;
+}
+
+#detailed-search-result-wrapper{
+  width: 80%;
+}
+
+#detailed-search-result{
+  width: 100%;
+}

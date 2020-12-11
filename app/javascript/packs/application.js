@@ -10,6 +10,7 @@ require("channels")
 require("../item_price")
 require("../create_token");
 require("../preview");  // プレビュー
+require("../tag_search"); 
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

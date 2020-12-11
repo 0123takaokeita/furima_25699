@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]   #deviseのメソッドのためコントローラーに記述しなくて良い。
-  # before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm, :purchase]
+  before_action :select_item, only: [:show, :edit, :update, :destroy, :purchase_confirm, :purchase]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :purchase_confirm, :purchase]
   before_action :sold_item, only: [:purchase_confirm, :purchase]
   before_action :current_user_has_not_card, only: [:purchase_confirm, :purchase]
-
+  before_action :set_item_form, only: [:edit, :update]
   
   def new
     @item_form = ItemForm.new
@@ -32,16 +32,19 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item_form.tag_name = @item.tags.first&.name
     return redirect_to root_path if current_user.id != @item.user.id
-    end
+  end
     
-    def update
-      @item = Item.find(params[:id])
-      @item.update(item_params) if current_user.id == @item.user.id
-      return redirect_to item_path if @item.valid?
-      render 'edit'
+  def update
+    render 'edit' unless current_user.id == @item.user.id
+    @item_form = ItemForm.new(item_form_params)
+    if @item_form.update(item_form_params, @item)
+      return redirect_to item_path(@item.id)
+    else
+      render :edit
     end
+  end
 
     def destroy
       @item = Item.find(params[:id])
@@ -114,6 +117,16 @@ private
       :building,
       :phone_number
     )
+  end
+
+  def select_item
+    @item = Item.find(params[:id])
+  end
+
+
+  def set_item_form
+    item_attributes = @item.attributes
+    @item_form = ItemForm.new(item_attributes)
   end
 
 

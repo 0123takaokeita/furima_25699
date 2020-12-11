@@ -3,6 +3,8 @@ class TagsController < ApplicationController
     puts "★★★★★★★★★★"
     puts "タグ：　#{params[:tag_name]}"
     puts "★★★★★★★★★★"
-    render json: {tags: ["hoge", "fuga", "foo", "bar"]}
+    return render json: {tags: [] } if params[:tag_name] == ""  ## ""で検索にかけると全てヒットしてしまうため""の場合はここで終了
+    tags = Tag.where(['name LIKE ?', "%#{params[:tag_name]}%"] )
+    render json: {tags: tags}
   end
 end

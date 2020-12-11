@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'comments/create'
   get 'transactions/index'
   root to: "items#index"
+  resources :tags, only: [:index]
   get 'items/new'
   devise_for :users, :controllers => {
     :omniauth_callbacks => 'users/omniauth_callbacks',

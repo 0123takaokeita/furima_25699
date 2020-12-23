@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   end
 
   # 金額が半角であるか検証
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+  validates :price, numericality: { message: 'Half-width number' }
 
   # 金額の範囲
   validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'

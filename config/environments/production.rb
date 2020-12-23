@@ -2,12 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   ActionCable.server.config.disable_request_forgery_protection = true
-  config.action_cable.url = "wss://furima_25699.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://furima_25699.herokuapp.com', 'http://furima_25699.herokuapp.com']
-
-
-  ActionCable.server.config.disable_request_forgery_protection = true
-  config.action_cable.url = "wss://xfurima_25699.herokuapp.com/cable", "ws://54.168.233.77/cable" 
+  config.action_cable.url = "wss://furima_25699.herokuapp.com/cable", "ws://54.168.233.77/cable" 
   config.action_cable.allowed_request_origins = ['https://furima_25699.herokuapp.com', 'http://furima_25699.herokuapp.com', 'http://54.168.233.77']
 
   # Code is not reloaded between requests.

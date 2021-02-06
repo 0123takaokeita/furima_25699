@@ -24,9 +24,12 @@ if(location.pathname.match(/items/) && location.pathname.match(/\d+/)){
           <p>${data.comment.content}</p>
         </div>
       `
+
       const comments = document.getElementById("comments")
       comments.insertAdjacentHTML('beforeend', html)
       comments.scrollTop = comments.scrollHeight;
+      document.getElementById("comment_content").value = ""
+      
     }    
   })
 } 

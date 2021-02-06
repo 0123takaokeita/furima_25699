@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
 
   context '保存できるとき' do
     it 'すべての入力がされている'do
-    expect(@user).to be_valid
+      expect(@user).to be_valid
     end
 
   end
@@ -15,7 +15,6 @@ RSpec.describe User, type: :model do
     it 'たかお'do
     end
     it 'つるさかい'do
-    end
-    
+    end    
   end
 end

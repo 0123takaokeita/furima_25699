@@ -51,10 +51,9 @@ bundle ex rubocop -a
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| id(PK)             | デフォルト          | null: false             |
-| nickname           | devise のデフォルト | null: false,index: true |
-| email              | devise のデフォルト | null: false             |
-| encrypted_password | integer             | null: false             |
+| nickname           | string              | null: false,index: true |
+| email              | string              | null: false             |
+| encrypted_password | string              | null: false             |
 | first_name         | string              | null: false             |
 | last_name          | string              | null: false             |
 | first_name_kana    | string              | null: false             |
@@ -86,7 +85,7 @@ bundle ex rubocop -a
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| id(PK)                              | デフォルト | null: false       |
+| id(PK)                              | デフォルト   | null: false       |
 | name                                | string     | null: false       |
 | price                               | integer    | null: false       |
 | info                                | text       | null: false       |

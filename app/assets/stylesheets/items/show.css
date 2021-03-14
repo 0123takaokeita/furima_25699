@@ -22,7 +22,7 @@
 .item-box>.name {
   text-align: center;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 60px;
 }
 
 .item-box-img {
@@ -31,6 +31,8 @@
   min-height: 500px;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
+  border: 3px solid #a1a0a0;
+  border-radius: 30%;
 }
 
 .item-price-box {
@@ -85,17 +87,18 @@
 
 .detail-item {
   width: 20%;
-  background-color: #eee;
+  background-color: #3ccace;;
   border: 1px solid #dedede;
-  font-size: 14px;
+  font-size: 20px;
   text-align: center;
 }
 
 .detail-value {
+  background-color: #c8cbcc;;
   width: 80%;
   padding: 20px;
   border: 1px solid #dedede;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .option {
@@ -229,3 +232,4 @@
   display: inline-block;
   color: red;
 } 
+

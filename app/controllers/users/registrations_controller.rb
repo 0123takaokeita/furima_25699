@@ -44,7 +44,7 @@ before_action :session_has_not_user_data, only: [:new_address_preset, :create_ad
     ## sessionに入っているuserの情報を元に@userを定義しなおす
     @user = User.new(session["devise.regist_data"]["user"])
     @address_preset = AddressPreset.new(address_preset_params)
-# 追加
+    
     @sns = SnsCredential.new(session["devise.regist_data"]["sns"])
 
     ## @userに@address_presetを紐づける
@@ -53,10 +53,9 @@ before_action :session_has_not_user_data, only: [:new_address_preset, :create_ad
     @user.sns_credential.new(@sns.attributes)
 
     ## @userがバリデーションに引っかかるなら入力させなおす
-    unless @user.valid?
+    unless @address_preset.valid?
       render :new_address_preset and return
     end
-    @user.save
     session["devise.regist_data"]["user"].clear
 # 追加
     session["devise.regist_data"]["sns"]&.clear

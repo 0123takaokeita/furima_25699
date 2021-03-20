@@ -33,3 +33,14 @@
   padding: 0.5rem;
   display: inline-block;
 }
+
+.card-detail__card-info{
+  background-color: #3bcace;
+  width: 30vw;
+  height: 20vh;
+  text-align: center;
+  margin-top: 4vh;
+  line-height: 4vh;
+  padding-top: 20px;
+}
+

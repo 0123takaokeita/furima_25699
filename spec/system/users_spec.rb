@@ -107,11 +107,11 @@ RSpec.describe "Users", type: :system do
       fill_in "building", with: ""
       fill_in "phone-number", with: ""
       # 登録ボタンを押すとモデルのカウントは上がらない
-      expect{click_button "会員登録"}.to change {User.count}.by(1)
+      expect{click_button "会員登録"}.to change {User.count}.by(0)
       # 配送先入力ページに遷移する
       expect(current_path).to eq(users_create_address_preset_path)
       
-      expect(page).to have_content("配送先入力")  
+      expect(page).to have_content("配送先情報入力")  
     end  
   end
 end

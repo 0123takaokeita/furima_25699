@@ -1,6 +1,8 @@
 
 test_user_1 = FactoryBot.create(:user, nickname: "太郎")
 test_user_2 = FactoryBot.create(:user, nickname: "次郎", email: "sample@com")
+test_user_2 = FactoryBot.create(:user, password: "aaa111", email: "a@a")
+
 
 item_1 = Item.where(
   name: "家電 新品 着払い 1~2日で発送 hoge太郎",

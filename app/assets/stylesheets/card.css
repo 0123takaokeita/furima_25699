@@ -42,5 +42,11 @@
   margin-top: 4vh;
   line-height: 4vh;
   padding-top: 20px;
+  border-radius: 10%;
+}
+
+.card-detail__card-info:hover{
+  color: rgb(252, 248, 248); /* 文字色を白にする */
+  background-color: #ee8a8a; /* 背景色をグレー（#c9c9c9）にする */
 }
 
